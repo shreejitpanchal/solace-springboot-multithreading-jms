@@ -3,9 +3,9 @@ package com.solace.executor.api.service;
 import com.solace.executor.api.model.SolaceJMSModel;
 import com.solace.executor.api.model.UserTopicParallelRequest;
 import com.solace.executor.api.model.UserTopicParallelResponse;
-import com.solace.executor.api.service.common.SolaceJMSInterfaceQ1;
-import com.solace.executor.api.service.common.SolaceJMSInterfaceQ2;
-import com.solace.executor.api.service.common.SolaceJMSInterfaceQ3;
+import com.solace.executor.api.service.jmsServices.SolaceJMSInterfaceQ1;
+import com.solace.executor.api.service.jmsServices.SolaceJMSInterfaceQ2;
+import com.solace.executor.api.service.jmsServices.SolaceJMSInterfaceQ3;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +39,8 @@ public class TopicParallelDemoService {
                 CompletableFuture<SolaceJMSModel> solaceJMSModelQ1 = solaceJMSInterfaceQ1.sendEvent(apiRequest.getInput());
                 CompletableFuture<SolaceJMSModel> solaceJMSModelQ2 = solaceJMSInterfaceQ2.sendEvent(apiRequest.getInput());
                 CompletableFuture<SolaceJMSModel> solaceJMSModelQ3 = solaceJMSInterfaceQ3.sendEvent(apiRequest.getInput());
+
+                // Only enable below code to synchronise thread output and collect each threads responses
                 CompletableFuture.allOf(solaceJMSModelQ1,solaceJMSModelQ2,solaceJMSModelQ3).join();
             }
         }

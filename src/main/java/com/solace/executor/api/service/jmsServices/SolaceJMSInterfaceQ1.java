@@ -1,4 +1,4 @@
-package com.solace.executor.api.service.common;
+package com.solace.executor.api.service.jmsServices;
 
 import com.solace.executor.api.model.SolaceJMSModel;
 import com.solace.executor.api.service.TopicParallelDemoService;
@@ -15,11 +15,10 @@ import javax.annotation.PostConstruct;
 import java.util.concurrent.CompletableFuture;
 
 @Service
-public class SolaceJMSInterfaceQ2 {
+public class SolaceJMSInterfaceQ1 {
     Logger logger = LoggerFactory.getLogger(TopicParallelDemoService.class);
     @Autowired
     private JmsTemplate jmsTemplate;
-
 
     @Autowired
     private SolaceJMSModel solaceJMSModel;
@@ -27,9 +26,21 @@ public class SolaceJMSInterfaceQ2 {
     @Value("${multithread.queueName}")
     private String queueName;
 
+    @PostConstruct
+    private void customizeJmsTemplate() {
+        // Update the jmsTemplate's connection factory to cache the connection
+        CachingConnectionFactory ccf = new CachingConnectionFactory();
+        ccf.setTargetConnectionFactory(jmsTemplate.getConnectionFactory());
+        jmsTemplate.setConnectionFactory(ccf);
+
+        // By default Spring Integration uses Queues, but if you set this to true you
+        // will send to a PubSub+ topic destination
+        jmsTemplate.setPubSubDomain(false);
+    }
+
     @Async("asyncExecutor")
     public CompletableFuture<SolaceJMSModel> sendEvent(String msg)  throws InterruptedException  {
-        logger.info("==========SENDING MESSAGE Q2========== " + msg + " - " + Thread.currentThread().getName());
+        logger.info("==========SENDING MESSAGE Q1========== " + msg + " - " + Thread.currentThread().getName());
         jmsTemplate.convertAndSend(queueName, msg);
         solaceJMSModel.setOutput("Success");
         return CompletableFuture.completedFuture(solaceJMSModel);

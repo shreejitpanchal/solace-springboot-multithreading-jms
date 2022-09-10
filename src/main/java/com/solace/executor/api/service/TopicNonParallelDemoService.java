@@ -2,7 +2,7 @@ package com.solace.executor.api.service;
 
 import com.solace.executor.api.model.UserTopicParallelRequest;
 import com.solace.executor.api.model.UserTopicParallelResponse;
-import com.solace.executor.api.service.common.SolaceJMSInterfaceNonAsyncQ1;
+import com.solace.executor.api.service.jmsServices.SolaceJMSInterfaceNonAsyncQ1;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.solace.executor.api.service.common;
+package com.solace.executor.api.service.jmsServices;
 
 import com.solace.executor.api.model.SolaceJMSModel;
 import com.solace.executor.api.service.TopicParallelDemoService;
@@ -8,14 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.connection.CachingConnectionFactory;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.concurrent.CompletableFuture;
 
 @Service
-public class SolaceJMSInterfaceQ1 {
+public class SolaceJMSInterfaceNonAsyncQ1 {
     Logger logger = LoggerFactory.getLogger(TopicParallelDemoService.class);
     @Autowired
     private JmsTemplate jmsTemplate;
@@ -37,13 +35,18 @@ public class SolaceJMSInterfaceQ1 {
         // will send to a PubSub+ topic destination
         jmsTemplate.setPubSubDomain(false);
     }
-
-    @Async("asyncExecutor")
-    public CompletableFuture<SolaceJMSModel> sendEvent(String msg)  throws InterruptedException  {
-        logger.info("==========SENDING MESSAGE Q1========== " + msg + " - " + Thread.currentThread().getName());
-        jmsTemplate.convertAndSend(queueName, msg);
-        solaceJMSModel.setOutput("Success");
-        return CompletableFuture.completedFuture(solaceJMSModel);
+    public SolaceJMSModel sendEvent(String msg)  {
+        try {
+            logger.info("==========Non Sync SENDING MESSAGE Q1========== " + msg + " - " + Thread.currentThread().getName());
+            jmsTemplate.convertAndSend(queueName, msg);
+            solaceJMSModel.setOutput("Success");
+            return solaceJMSModel;
+        }
+        catch(Exception e)
+        {
+            logger.info("Exception non Async e:"+e.getMessage());
+        }
+        return null;
     }
 
 }
