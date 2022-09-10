@@ -41,7 +41,7 @@ public class TopicParallelDemoService {
                 CompletableFuture<SolaceJMSModel> solaceJMSModelQ3 = solaceJMSInterfaceQ3.sendEvent(apiRequest.getInput());
 
                 // Only enable below code to synchronise thread output and collect each threads responses
-                CompletableFuture.allOf(solaceJMSModelQ1,solaceJMSModelQ2,solaceJMSModelQ3).join();
+                //CompletableFuture.allOf(solaceJMSModelQ1,solaceJMSModelQ2,solaceJMSModelQ3).join();
             }
         }
         catch(Exception e)
