@@ -17,6 +17,9 @@ The Spring Tutorials require that you have access to a PubSub+ Service. You can 
 
 
 ## Prerequisites
+Enable Lombok before mvn clean, Please follow below instructions to enable lombok in Intellij
+
+https://projectlombok.org/setup/intellij
 
 Install the data model
 ``` bash
