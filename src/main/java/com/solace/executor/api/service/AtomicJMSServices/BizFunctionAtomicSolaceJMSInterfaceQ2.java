@@ -1,4 +1,4 @@
-package com.solace.executor.api.service.jmsServices;
+package com.solace.executor.api.service.AtomicJMSServices;
 
 import com.solace.executor.api.model.SolaceJMSModel;
 import com.solace.executor.api.service.TopicParallelDemoService;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.CompletableFuture;
 
 @Service
-public class SolaceJMSInterfaceQ3 {
+public class BizFunctionAtomicSolaceJMSInterfaceQ2 {
     Logger logger = LoggerFactory.getLogger(TopicParallelDemoService.class);
     @Autowired
     private JmsTemplate jmsTemplate;
@@ -25,10 +25,9 @@ public class SolaceJMSInterfaceQ3 {
     @Value("${multithread.queueName}")
     private String queueName;
 
-
     @Async("asyncExecutor")
     public CompletableFuture<SolaceJMSModel> sendEvent(String msg)  throws InterruptedException  {
-        logger.info("==========SENDING MESSAGE Q3========== " + msg + " - " + Thread.currentThread().getName());
+        logger.info("==========SENDING MESSAGE Q2========== " + msg + " - " + Thread.currentThread().getName());
         jmsTemplate.convertAndSend(queueName, msg);
         solaceJMSModel.setOutput("Success");
         return CompletableFuture.completedFuture(solaceJMSModel);

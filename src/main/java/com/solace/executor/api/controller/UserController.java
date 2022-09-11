@@ -1,7 +1,7 @@
 package com.solace.executor.api.controller;
 
 import com.solace.executor.api.model.UserTopicParallelRequest;
-import com.solace.executor.api.service.TopicNonParallelDemoService;
+import com.solace.executor.api.service.LegacyTopicNonParallelDemoService;
 import com.solace.executor.api.service.TopicParallelDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ public class UserController {
     private TopicParallelDemoService topicParallelDemoService;
 
     @Autowired
-    private TopicNonParallelDemoService topicNonParallelDemoService;
+    private LegacyTopicNonParallelDemoService legacyTopicNonParallelDemoService;
 
     @PostMapping(value = "/topicParallelDemo", consumes = "application/json", produces = "application/json")
     @ResponseBody
@@ -30,7 +30,7 @@ public class UserController {
     public ResponseEntity topicNonParallelDemo(
             @Valid
             @RequestBody UserTopicParallelRequest apiRequest) {
-        return ResponseEntity.ok(topicNonParallelDemoService.topicParrellelDemo(apiRequest));
+        return ResponseEntity.ok(legacyTopicNonParallelDemoService.topicParrellelDemo(apiRequest));
     }
 
 }

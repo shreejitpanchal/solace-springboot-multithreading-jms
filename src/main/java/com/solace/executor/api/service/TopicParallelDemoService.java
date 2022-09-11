@@ -3,9 +3,9 @@ package com.solace.executor.api.service;
 import com.solace.executor.api.model.SolaceJMSModel;
 import com.solace.executor.api.model.UserTopicParallelRequest;
 import com.solace.executor.api.model.UserTopicParallelResponse;
-import com.solace.executor.api.service.jmsServices.SolaceJMSInterfaceQ1;
-import com.solace.executor.api.service.jmsServices.SolaceJMSInterfaceQ2;
-import com.solace.executor.api.service.jmsServices.SolaceJMSInterfaceQ3;
+import com.solace.executor.api.service.AtomicJMSServices.BizFunctionAtomicSolaceJMSInterfaceQ1;
+import com.solace.executor.api.service.AtomicJMSServices.BizFunctionAtomicSolaceJMSInterfaceQ2;
+import com.solace.executor.api.service.AtomicJMSServices.BizFunctionAtomicSolaceJMSInterfaceQ3;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,34 +19,36 @@ public class TopicParallelDemoService {
     Logger logger = LoggerFactory.getLogger(TopicParallelDemoService.class);
 
     @Autowired
-    private SolaceJMSInterfaceQ1 solaceJMSInterfaceQ1;
+    private BizFunctionAtomicSolaceJMSInterfaceQ1 bizFunctionAtomicSolaceJMSInterfaceQ1;
 
     @Autowired
-    private SolaceJMSInterfaceQ2 solaceJMSInterfaceQ2;
+    private BizFunctionAtomicSolaceJMSInterfaceQ2 bizFunctionAtomicSolaceJMSInterfaceQ2;
 
     @Autowired
-    private SolaceJMSInterfaceQ3 solaceJMSInterfaceQ3;
+    private BizFunctionAtomicSolaceJMSInterfaceQ3 bizFunctionAtomicSolaceJMSInterfaceQ3;
     @Autowired
     private UserTopicParallelResponse apiResponse;
 
-    public UserTopicParallelResponse topicParrellelDemo(UserTopicParallelRequest apiRequest){
+    public UserTopicParallelResponse topicParrellelDemo(UserTopicParallelRequest apiRequest) {
 
-        logger.info("Engine topicParrellelDemo with Input:"+apiRequest.getInput() +
+        logger.info("Engine topicParrellelDemo with Input:" + apiRequest.getInput() +
                 " : msgBroadCastCount :" + apiRequest.getMsgBroadCastCount());
         long start = System.currentTimeMillis();
         try {
             for (int i = 0; i < apiRequest.getMsgBroadCastCount(); i++) {
-                CompletableFuture<SolaceJMSModel> solaceJMSModelQ1 = solaceJMSInterfaceQ1.sendEvent(apiRequest.getInput());
-                CompletableFuture<SolaceJMSModel> solaceJMSModelQ2 = solaceJMSInterfaceQ2.sendEvent(apiRequest.getInput());
-                CompletableFuture<SolaceJMSModel> solaceJMSModelQ3 = solaceJMSInterfaceQ3.sendEvent(apiRequest.getInput());
+                // Spawnable service class below using asyncExecutor Thread pool
+                CompletableFuture<SolaceJMSModel> bizFunctionAtomicW1 =
+                        bizFunctionAtomicSolaceJMSInterfaceQ1.sendEvent(apiRequest.getInput());
+                CompletableFuture<SolaceJMSModel> bizFunctionAtomicW2 =
+                        bizFunctionAtomicSolaceJMSInterfaceQ2.sendEvent(apiRequest.getInput());
+                CompletableFuture<SolaceJMSModel> bizFunctionAtomicW3 =
+                        bizFunctionAtomicSolaceJMSInterfaceQ3.sendEvent(apiRequest.getInput());
 
                 // Only enable below code to synchronise thread output and collect each threads responses
-                //CompletableFuture.allOf(solaceJMSModelQ1,solaceJMSModelQ2,solaceJMSModelQ3).join();
+                //CompletableFuture.allOf(bizFunctionAtomicW1,bizFunctionAtomicW2,bizFunctionAtomicW3).join();
             }
-        }
-        catch(Exception e)
-        {
-            logger.info("Error in sendEvent :"+e.getMessage());
+        } catch (Exception e) {
+            logger.info("Error in sendEvent :" + e.getMessage());
         }
 
         apiResponse.setOutput("Successful");

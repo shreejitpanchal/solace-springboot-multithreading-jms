@@ -13,6 +13,7 @@ public class SolaceJMSConfig {
     @Autowired
     private JmsTemplate jmsTemplate;
 
+    // Enable below code block to apply common jmsTemplate across services.
 //    @PostConstruct
 //    private void customizeJmsTemplate() {
 //        // Update the jmsTemplate's connection factory to cache the connection

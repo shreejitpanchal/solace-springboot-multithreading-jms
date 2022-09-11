@@ -1,4 +1,4 @@
-package com.solace.executor.api.service.jmsServices;
+package com.solace.executor.api.service.AtomicJMSServices;
 
 import com.solace.executor.api.model.SolaceJMSModel;
 import com.solace.executor.api.service.TopicParallelDemoService;
