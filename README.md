@@ -1,27 +1,24 @@
-## Author 
+## Solace PubSub+ Spring MultiThreading Demo using Completable Future
 
-Shreejit Panchal
+## Author : Shreejit Panchal
+
+
 
 ## Git Repo
-
-[Git Repo Path](https://github.com/shreejitpanchal/solace-springboot-multithreading-jms) https://github.com/shreejitpanchal/solace-springboot-multithreading-jms.
-
-
-## Solace PubSub+ Spring MultiThreading Fanout Throughtput Demo
-
-
+[Git Repo Path] https://github.com/shreejitpanchal/solace-springboot-multithreading-jms.
 
 ## Access a PubSub+ Service
-
 The Spring Tutorials require that you have access to a PubSub+ Service. You can quickly set one up for FREE by following [these instructions](https://solace.com/try-it-now/)
 
 
 ## Prerequisites
-Enable Lombok before mvn clean, Please follow below instructions to enable lombok in Intellij
+1: Enable Lombok before mvn clean, Please follow instructions to enable lombok in Intellij :: 
+https://projectlombok.org/setup/intellij 
 
-https://projectlombok.org/setup/intellij
+2: Solace JMS specific know host port either local or remote "smf://<< HOST >>:<< PORT >>"
 
-Install the data model
+
+3: Maven Steps for Build & Install below:
 ``` bash
 cd solace-springboot-multithreading-jms
 mvn clean install
