@@ -17,15 +17,13 @@ import java.util.concurrent.CompletableFuture;
 public class TopicParallelDemoService {
 
     Logger logger = LoggerFactory.getLogger(TopicParallelDemoService.class);
-
     @Autowired
     private BizFunctionAtomicSolaceJMSInterfaceQ1 bizFunctionAtomicSolaceJMSInterfaceQ1;
-
     @Autowired
     private BizFunctionAtomicSolaceJMSInterfaceQ2 bizFunctionAtomicSolaceJMSInterfaceQ2;
-
     @Autowired
     private BizFunctionAtomicSolaceJMSInterfaceQ3 bizFunctionAtomicSolaceJMSInterfaceQ3;
+
     @Autowired
     private UserTopicParallelResponse apiResponse;
 

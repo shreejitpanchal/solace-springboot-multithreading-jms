@@ -26,18 +26,6 @@ public class BizFunctionAtomicSolaceJMSInterfaceQ1 {
     @Value("${multithread.queueName}")
     private String queueName;
 
-    @PostConstruct
-    private void customizeJmsTemplate() {
-        // Update the jmsTemplate's connection factory to cache the connection
-        CachingConnectionFactory ccf = new CachingConnectionFactory();
-        ccf.setTargetConnectionFactory(jmsTemplate.getConnectionFactory());
-        jmsTemplate.setConnectionFactory(ccf);
-
-        // By default Spring Integration uses Queues, but if you set this to true you
-        // will send to a PubSub+ topic destination
-        jmsTemplate.setPubSubDomain(false);
-    }
-
     @Async("asyncExecutor")
     public CompletableFuture<SolaceJMSModel> sendEvent(String msg)  throws InterruptedException  {
         logger.info("=== SENDING MESSAGE Q1 : " + msg + " - " + Thread.currentThread().getName());
