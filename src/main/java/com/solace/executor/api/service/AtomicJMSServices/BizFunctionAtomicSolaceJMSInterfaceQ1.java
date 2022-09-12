@@ -40,7 +40,7 @@ public class BizFunctionAtomicSolaceJMSInterfaceQ1 {
 
     @Async("asyncExecutor")
     public CompletableFuture<SolaceJMSModel> sendEvent(String msg)  throws InterruptedException  {
-        logger.info("==========SENDING MESSAGE Q1========== " + msg + " - " + Thread.currentThread().getName());
+        logger.info("=== SENDING MESSAGE Q1 : " + msg + " - " + Thread.currentThread().getName());
         jmsTemplate.convertAndSend(queueName, msg);
         solaceJMSModel.setOutput("Success");
         return CompletableFuture.completedFuture(solaceJMSModel);

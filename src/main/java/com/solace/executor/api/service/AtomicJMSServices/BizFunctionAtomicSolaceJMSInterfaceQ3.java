@@ -17,18 +17,15 @@ public class BizFunctionAtomicSolaceJMSInterfaceQ3 {
     Logger logger = LoggerFactory.getLogger(TopicParallelDemoService.class);
     @Autowired
     private JmsTemplate jmsTemplate;
-
-
     @Autowired
     private SolaceJMSModel solaceJMSModel;
-
     @Value("${multithread.queueName}")
     private String queueName;
 
 
     @Async("asyncExecutor")
     public CompletableFuture<SolaceJMSModel> sendEvent(String msg)  throws InterruptedException  {
-        logger.info("==========SENDING MESSAGE Q3========== " + msg + " - " + Thread.currentThread().getName());
+        logger.info("=== SENDING MESSAGE Q3 : " + msg + " - " + Thread.currentThread().getName());
         jmsTemplate.convertAndSend(queueName, msg);
         solaceJMSModel.setOutput("Success");
         return CompletableFuture.completedFuture(solaceJMSModel);

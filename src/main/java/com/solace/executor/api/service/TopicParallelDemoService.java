@@ -36,7 +36,7 @@ public class TopicParallelDemoService {
         long start = System.currentTimeMillis();
         try {
             for (int i = 0; i < apiRequest.getMsgBroadCastCount(); i++) {
-                // Spawnable service class below using asyncExecutor Thread pool
+                // Business function Atomic service class below using asyncExecutor Thread pool
                 CompletableFuture<SolaceJMSModel> bizFunctionAtomicW1 =
                         bizFunctionAtomicSolaceJMSInterfaceQ1.sendEvent(apiRequest.getInput());
                 CompletableFuture<SolaceJMSModel> bizFunctionAtomicW2 =
@@ -44,8 +44,8 @@ public class TopicParallelDemoService {
                 CompletableFuture<SolaceJMSModel> bizFunctionAtomicW3 =
                         bizFunctionAtomicSolaceJMSInterfaceQ3.sendEvent(apiRequest.getInput());
 
-                // Only enable below code to synchronise thread output and collect each threads responses
-                //CompletableFuture.allOf(bizFunctionAtomicW1,bizFunctionAtomicW2,bizFunctionAtomicW3).join();
+                // Disable below code to make Async Fan out modelling, else allOf will collect each threads responses
+                CompletableFuture.allOf(bizFunctionAtomicW1,bizFunctionAtomicW2,bizFunctionAtomicW3).join();
             }
         } catch (Exception e) {
             logger.info("Error in sendEvent :" + e.getMessage());

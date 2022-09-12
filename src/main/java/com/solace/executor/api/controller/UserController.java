@@ -13,7 +13,6 @@ import javax.validation.Valid;
 public class UserController {
     @Autowired
     private TopicParallelDemoService topicParallelDemoService;
-
     @Autowired
     private LegacyTopicNonParallelDemoService legacyTopicNonParallelDemoService;
 

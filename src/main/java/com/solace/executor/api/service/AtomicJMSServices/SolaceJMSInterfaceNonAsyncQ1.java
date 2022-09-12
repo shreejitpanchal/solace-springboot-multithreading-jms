@@ -17,10 +17,8 @@ public class SolaceJMSInterfaceNonAsyncQ1 {
     Logger logger = LoggerFactory.getLogger(TopicParallelDemoService.class);
     @Autowired
     private JmsTemplate jmsTemplate;
-
     @Autowired
     private SolaceJMSModel solaceJMSModel;
-
     @Value("${multithread.queueName}")
     private String queueName;
 
@@ -37,7 +35,7 @@ public class SolaceJMSInterfaceNonAsyncQ1 {
     }
     public SolaceJMSModel sendEvent(String msg)  {
         try {
-            logger.info("==========Non Sync SENDING MESSAGE Q1========== " + msg + " - " + Thread.currentThread().getName());
+            logger.info("=== Non Sync SENDING MESSAGE Q1 :" + msg + " - " + Thread.currentThread().getName());
             jmsTemplate.convertAndSend(queueName, msg);
             solaceJMSModel.setOutput("Success");
             return solaceJMSModel;
