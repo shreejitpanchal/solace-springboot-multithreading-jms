@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "topicParallelUploadDemo",
+			"name": "fanOutMultiThreadDemo",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -24,17 +24,51 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"input\": \"Shreejit Aysnc Thread Testing\",\r\n    \"msgBroadCastCount\": 10000\r\n}"
+					"raw": "{\r\n    \"input\": \"fanOutMultiThreadDemo Aysnc Thread\",\r\n    \"msgBroadCastCount\": 3000\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:9191/topicParallelDemo",
+					"raw": "http://localhost:9191/fanOutMultiThreadDemo",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "9191",
 					"path": [
-						"topicParallelDemo"
+						"fanOutMultiThreadDemo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "scatterGatherMultiThreadDemo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"input\": \"scatterGatherMultiThreadDemo Aysnc Thread\",\r\n    \"msgBroadCastCount\": 1000\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9191/scatterGatherMultiThreadDemo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"scatterGatherMultiThreadDemo"
 					]
 				}
 			},
@@ -58,17 +92,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"input\": \"Shreejit Sequencial Testing\",\r\n    \"msgBroadCastCount\": 1\r\n}"
+					"raw": "{\r\n    \"input\": \"legacySequenticalSyncDemo Sequential Testing\",\r\n    \"msgBroadCastCount\": 3000\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:9191/topicNonParallelDemo",
+					"raw": "http://localhost:9191/legacySequenticalSyncDemoService",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "9191",
 					"path": [
-						"topicNonParallelDemo"
+						"legacySequenticalSyncDemoService"
 					]
 				}
 			},

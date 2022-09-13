@@ -2,14 +2,25 @@
 
 ## Author : Shreejit Panchal
 
-
-
 ## Git Repo
 [Git Repo Path] https://github.com/shreejitpanchal/solace-springboot-multithreading-jms.
 
 ## Access a PubSub+ Service
 The Spring Tutorials require that you have access to a PubSub+ Service. You can quickly set one up for FREE by following [these instructions](https://solace.com/try-it-now/)
 
+## Please refer to Postman collection attached in project at below path:
+./ Solace-Spring-MultiThread-CompletableFuture.postman_collection.json
+
+## MultiThreading Asynchronous Patterns Covered in the Framework below:
+1: FanOut Pattern 
+2: Scatter/Gather Pattern
+
+--- FAN OUT PATTERN ---
+![fanout.png](fanout.png)
+
+
+--- Scatter/Gather Pattern
+![scattergather.png](scattergather.png)
 
 ## Prerequisites
 1: Enable Lombok before mvn clean, Please follow instructions to enable lombok in Intellij :: 

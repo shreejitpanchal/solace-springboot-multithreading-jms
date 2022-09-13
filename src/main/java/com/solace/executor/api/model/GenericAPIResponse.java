@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @Component
-public class UserTopicParallelRequest {
-    private String input;
-    private Integer msgBroadCastCount;
-    private Integer threadCount;
+public class GenericAPIResponse {
+    private String output;
+    private String executionTotalTimeInMS;
 }

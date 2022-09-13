@@ -1,8 +1,9 @@
 package com.solace.executor.api.service;
 
-import com.solace.executor.api.model.UserTopicParallelRequest;
-import com.solace.executor.api.model.UserTopicParallelResponse;
-import com.solace.executor.api.service.AtomicJMSServices.SolaceJMSInterfaceNonAsyncQ1;
+import com.solace.executor.api.model.GenericAPIRequest;
+import com.solace.executor.api.model.GenericAPIResponse;
+import com.solace.executor.api.service.AtomicApplicationServices.BizAtomicApplicationJMSInterfaceQ1;
+import com.solace.executor.api.service.AtomicApplicationServices.SequentialBizAtomicApplicationJMSInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,22 +11,22 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class LegacyTopicNonParallelDemoService {
+public class zLegacySequenticalSyncDemoService {
 
-    Logger logger = LoggerFactory.getLogger(TopicParallelDemoService.class);
+    Logger logger = LoggerFactory.getLogger(zLegacySequenticalSyncDemoService.class);
     @Autowired
-    private SolaceJMSInterfaceNonAsyncQ1 solaceJMSInterfaceNonAsyncQ1;
+    private SequentialBizAtomicApplicationJMSInterface sequentialBizAtomicApplicationJMSInterface;
     @Autowired
-    private UserTopicParallelResponse apiResponse;
+    private GenericAPIResponse apiResponse;
 
-    public UserTopicParallelResponse topicParrellelDemo(UserTopicParallelRequest apiRequest) {
+    public GenericAPIResponse sequentialSyncDemo(GenericAPIRequest apiRequest) {
         logger.info("Engine topicParrellelDemo with Input:" + apiRequest.getInput() +
                 " : msgBroadCastCount :" + apiRequest.getMsgBroadCastCount() +
                 " : ThreadCount:" + apiRequest.getThreadCount());
         long start = System.currentTimeMillis();
         try {
             for (int i = 0; i < apiRequest.getMsgBroadCastCount(); i++) {
-                solaceJMSInterfaceNonAsyncQ1.sendEvent(apiRequest.getInput());
+                sequentialBizAtomicApplicationJMSInterface.sendEvent(apiRequest.getInput());
             }
         } catch (Exception e) {
             logger.info("Error in sendEvent :" + e.getMessage());
