@@ -8,8 +8,8 @@
 ## Access a PubSub+ Service
 The Spring Tutorials require that you have access to a PubSub+ Service. You can quickly set one up for FREE by following [these instructions](https://solace.com/try-it-now/)
 
-## Please refer to Postman collection attached in project at below path:
-./ Solace-Spring-MultiThread-CompletableFuture.postman_collection.json
+## Please refer to Postman collection attached in project at below path if you want to try out the framework:
+--> ./Solace-Spring-MultiThread-CompletableFuture.postman_collection.json
 
 ## MultiThreading Asynchronous Patterns Covered in the Framework below:
 1: FanOut Pattern 
