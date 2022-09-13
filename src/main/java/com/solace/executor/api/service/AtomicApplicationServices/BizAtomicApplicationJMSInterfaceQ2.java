@@ -1,7 +1,6 @@
 package com.solace.executor.api.service.AtomicApplicationServices;
 
 import com.solace.executor.api.model.AtomicAppAPIReqResp;
-import com.solace.executor.api.service.FanOutMultiThreadDemoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

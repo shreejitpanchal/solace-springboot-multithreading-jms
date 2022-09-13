@@ -6,10 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
-import java.util.concurrent.CompletableFuture;
 
 @Service
 public class SequentialBizAtomicApplicationJMSInterface {
@@ -31,7 +28,7 @@ public class SequentialBizAtomicApplicationJMSInterface {
         jmsTemplate.convertAndSend(queueName, msg);
         atomicAppAPIReqResp.setOutput("Success");
         //*******//
-        // write code here to implement scatter/gather and to capture response from the outstream application which can be either
+        // write code here to implement scatter/gather and to capture response from the downstream application which can be either
         // Synchronus REST or Asynchronus Messaging
         //*******//
         return atomicAppAPIReqResp;

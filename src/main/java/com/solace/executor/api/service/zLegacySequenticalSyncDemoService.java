@@ -2,7 +2,6 @@ package com.solace.executor.api.service;
 
 import com.solace.executor.api.model.GenericAPIRequest;
 import com.solace.executor.api.model.GenericAPIResponse;
-import com.solace.executor.api.service.AtomicApplicationServices.BizAtomicApplicationJMSInterfaceQ1;
 import com.solace.executor.api.service.AtomicApplicationServices.SequentialBizAtomicApplicationJMSInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

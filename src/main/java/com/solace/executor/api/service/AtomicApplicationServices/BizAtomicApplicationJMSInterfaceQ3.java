@@ -1,7 +1,6 @@
 package com.solace.executor.api.service.AtomicApplicationServices;
 
 import com.solace.executor.api.model.AtomicAppAPIReqResp;
-import com.solace.executor.api.service.FanOutMultiThreadDemoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,7 @@ public class BizAtomicApplicationJMSInterfaceQ3 {
         jmsTemplate.convertAndSend(queueName, msg);
         atomicAppAPIReqResp.setOutput("Success");
         //*******//
-        // write code here to implement scatter/gather and to capture response from the outstream application which can be either
+        // write code here to implement scatter/gather and to capture response from the downstream application which can be either
         // Synchronus REST or Asynchronus Messaging
         //*******//
         return CompletableFuture.completedFuture(atomicAppAPIReqResp);
