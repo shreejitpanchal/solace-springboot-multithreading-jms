@@ -17,11 +17,11 @@ The Spring Tutorials require that you have access to a PubSub+ Service. You can 
 2: Scatter/Gather Pattern
 
 --- FAN OUT PATTERN ---
-![fanout.png](fanout.png)
+![fanout.png](resources/fanout.png)
 
 
 --- Scatter/Gather Pattern
-![scattergather.png](scattergather.png)
+![scattergather.png](resources/scattergather.png)
 
 ## Prerequisites
 1: Enable Lombok before mvn clean, Please follow instructions to enable lombok in Intellij :: 
