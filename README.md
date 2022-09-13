@@ -13,6 +13,7 @@ The Spring Tutorials require that you have access to a PubSub+ Service. You can 
 
 ## MultiThreading Asynchronous Patterns Covered in the Framework below:
 1: FanOut Pattern 
+
 2: Scatter/Gather Pattern
 
 --- FAN OUT PATTERN ---
