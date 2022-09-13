@@ -32,7 +32,7 @@ public class BizAtomicApplicationJMSInterfaceQ2 {
         jmsTemplate.convertAndSend(queueName, msg);
         atomicAppAPIReqResp.setOutput("Success");
         //*******//
-        // write code here to implement scatter/gather and to capture response from the outstream application which can be either
+        // write code here to implement scatter/gather and to capture response from the downstream application which can be either
         // Synchronus REST or Asynchronus Messaging
         //*******//
         return CompletableFuture.completedFuture(atomicAppAPIReqResp);
