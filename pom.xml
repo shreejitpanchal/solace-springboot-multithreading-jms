@@ -8,11 +8,11 @@
 		<version>2.2.1.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.sample</groupId>
-	<artifactId>spring-boot-multithreading-scatter-gather-fanout</artifactId>
+	<groupId>com.solace</groupId>
+	<artifactId>solace-springboot-multithreading-jms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot-multithreading-scatter-gather-fanout</name>
-	<description>Spring Boot project</description>
+	<name>solace-springboot-multithreading-jms</name>
+	<description>Solace Spring JMS project</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -39,6 +39,20 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-jms</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.solace.spring.boot</groupId>
+			<artifactId>solace-jms-spring-boot-starter</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.solace.spring.boot</groupId>
+			<artifactId>solace-jms-spring-boot-autoconfigure</artifactId>
+			<version>4.2.2</version>
 		</dependency>
 	</dependencies>
 

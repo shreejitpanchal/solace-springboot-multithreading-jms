@@ -1,11 +1,11 @@
-package com.sample.executor.api.controller;
+package com.solace.executor.api.controller;
 
-import com.sample.executor.api.model.GenericAPIRequest;
-import com.sample.executor.api.service.ScatterGatherMultiThreadDemoService;
-import com.sample.executor.api.service.zLegacySequenticalSyncDemoService;
-import com.sample.executor.api.service.FanOutMultiThreadDemoService;
+import com.solace.executor.api.model.GenericAPIRequest;
+import com.solace.executor.api.service.ScatterGatherMultiThreadDemoService;
+import com.solace.executor.api.service.zLegacySequenticalSyncDemoService;
+import com.solace.executor.api.service.FanOutMultiThreadDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -42,4 +42,5 @@ public class GenericController {
             @RequestBody GenericAPIRequest apiRequest) {
         return ResponseEntity.ok(zLegacySequenticalSyncDemoService.sequentialSyncDemo(apiRequest));
     }
+
 }

@@ -1,4 +1,4 @@
-package com.sample.executor.api.model;
+package com.solace.executor.api.model;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.sample.executor.api.config;
+package com.solace.executor.api.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

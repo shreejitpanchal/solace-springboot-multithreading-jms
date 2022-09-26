@@ -1,8 +1,8 @@
-package com.sample.executor.api.service;
+package com.solace.executor.api.service;
 
-import com.sample.executor.api.model.GenericAPIRequest;
-import com.sample.executor.api.model.GenericAPIResponse;
-import com.sample.executor.api.service.AtomicApplicationServices.SequentialBizAtomicApplicationInterface;
+import com.solace.executor.api.model.GenericAPIRequest;
+import com.solace.executor.api.model.GenericAPIResponse;
+import com.solace.executor.api.service.AtomicApplicationServices.SequentialBizAtomicApplicationJMSInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ public class zLegacySequenticalSyncDemoService {
 
     Logger logger = LoggerFactory.getLogger(zLegacySequenticalSyncDemoService.class);
     @Autowired
-    private SequentialBizAtomicApplicationInterface sequentialBizAtomicApplicationInterface;
+    private SequentialBizAtomicApplicationJMSInterface sequentialBizAtomicApplicationJMSInterface;
     @Autowired
     private GenericAPIResponse apiResponse;
 
@@ -25,7 +25,7 @@ public class zLegacySequenticalSyncDemoService {
         long start = System.currentTimeMillis();
         try {
             for (int i = 0; i < apiRequest.getMsgBroadCastCount(); i++) {
-                sequentialBizAtomicApplicationInterface.sendEvent(apiRequest.getInput());
+                sequentialBizAtomicApplicationJMSInterface.sendEvent(apiRequest.getInput());
             }
         } catch (Exception e) {
             logger.info("Error in sendEvent :" + e.getMessage());
