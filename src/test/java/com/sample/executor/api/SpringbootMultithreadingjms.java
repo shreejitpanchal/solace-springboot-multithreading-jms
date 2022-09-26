@@ -1,10 +1,10 @@
-package com.solace.executor.api;
+package com.sample.executor.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringbootMultithreadingJMSApplicationTests {
+class SpringbootMultithreadingApplicationTests {
 
 	@Test
 	void contextLoads() {

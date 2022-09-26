@@ -1,11 +1,11 @@
-package com.solace.executor.api.service;
+package com.sample.executor.api.service;
 
-import com.solace.executor.api.model.AtomicAppAPIReqResp;
-import com.solace.executor.api.model.GenericAPIRequest;
-import com.solace.executor.api.model.GenericAPIResponse;
-import com.solace.executor.api.service.AtomicApplicationServices.BizAtomicApplicationJMSInterfaceQ1;
-import com.solace.executor.api.service.AtomicApplicationServices.BizAtomicApplicationJMSInterfaceQ2;
-import com.solace.executor.api.service.AtomicApplicationServices.BizAtomicApplicationJMSInterfaceQ3;
+import com.sample.executor.api.model.AtomicAppAPIReqResp;
+import com.sample.executor.api.model.GenericAPIRequest;
+import com.sample.executor.api.model.GenericAPIResponse;
+import com.sample.executor.api.service.AtomicApplicationServices.BizAtomicApplicationInterfaceQ1;
+import com.sample.executor.api.service.AtomicApplicationServices.BizAtomicApplicationInterfaceQ2;
+import com.sample.executor.api.service.AtomicApplicationServices.BizAtomicApplicationInterfaceQ3;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +18,11 @@ public class FanOutMultiThreadDemoService {
 
     Logger logger = LoggerFactory.getLogger(FanOutMultiThreadDemoService.class);
     @Autowired
-    private BizAtomicApplicationJMSInterfaceQ1 bizAtomicApplicationJMSInterfaceQ1;
+    private BizAtomicApplicationInterfaceQ1 bizAtomicApplicationInterfaceQ1;
     @Autowired
-    private BizAtomicApplicationJMSInterfaceQ2 bizAtomicApplicationJMSInterfaceQ2;
+    private BizAtomicApplicationInterfaceQ2 bizAtomicApplicationInterfaceQ2;
     @Autowired
-    private BizAtomicApplicationJMSInterfaceQ3 bizAtomicApplicationJMSInterfaceQ3;
+    private BizAtomicApplicationInterfaceQ3 bizAtomicApplicationInterfaceQ3;
     @Autowired
     private GenericAPIResponse apiResponse;
 
@@ -37,11 +37,11 @@ public class FanOutMultiThreadDemoService {
             for (int i = 0; i < apiRequest.getMsgBroadCastCount(); i++) {
                 // Business function Atomic service class below using asyncExecutor Thread pool
                 CompletableFuture<AtomicAppAPIReqResp> bizFunctionAtomicW1 =
-                        bizAtomicApplicationJMSInterfaceQ1.sendEvent(apiRequest.getInput()); // invoke downstream application in dedicated thread
+                        bizAtomicApplicationInterfaceQ1.sendEvent(apiRequest.getInput()); // invoke downstream application in dedicated thread
                 CompletableFuture<AtomicAppAPIReqResp> bizFunctionAtomicW2 =
-                        bizAtomicApplicationJMSInterfaceQ2.sendEvent(apiRequest.getInput()); // invoke downstream application in dedicated thread
+                        bizAtomicApplicationInterfaceQ2.sendEvent(apiRequest.getInput()); // invoke downstream application in dedicated thread
                 CompletableFuture<AtomicAppAPIReqResp> bizFunctionAtomicW3 =
-                        bizAtomicApplicationJMSInterfaceQ3.sendEvent(apiRequest.getInput()); // invoke downstream application in dedicated thread
+                        bizAtomicApplicationInterfaceQ3.sendEvent(apiRequest.getInput()); // invoke downstream application in dedicated thread
                 //
                 // Add code here to add more than 3 application invocation
                 //
